@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GMat</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_chapter_list">ChapterListActivity</string>
+    <string name="chapters">Chapters</string>
+    <string name="title_activity_chapter_detail">ChapterDetailActivity</string>
+    <string name="title_activity_book_marked_chapter_list">BookMarkedChapterListActivity</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="added_to_bookamrk">Added to bookmark</string>
+    <string name="removed_from_bookamrk">Removed from bookmark</string>
+    <string name="no_bookmark">No Bookmark Found</string>
+    <string name="ok">OK</string>
+
+</resources>

@@ -1,0 +1,98 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_background"
+    android:orientation="vertical"
+    tools:context=".ChapterDetailActivity" >
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/grey_header" >
+
+        <TextView
+            android:id="@+id/chapter_detail_title_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/text_blue"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/chapter_detail_back_imageview"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/menu_button" />
+
+        <ImageView
+            android:id="@+id/bookmark_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/bookmark_off" />
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/chapter_detail_detail_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rl"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/relativeLayout1"
+        android:background="@android:color/white"
+        android:ems="10"
+        android:focusableInTouchMode="false"
+        android:gravity="top|left"
+        android:inputType="textMultiLine"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:scrollbarAlwaysDrawVerticalTrack="false"
+        android:scrollbars="vertical"
+        android:textSize="15sp"
+        android:animateLayoutChanges="true" >
+    </EditText>
+
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/brown" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp" >
+
+            <ImageView
+                android:id="@+id/zoom_out"
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:src="@drawable/zoom_out" />
+
+            <ImageView
+                android:id="@+id/zoom_in"
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/zoom_in" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
