@@ -64,11 +64,47 @@ public class ChapterEntityHelper {
 		return chapterList;
 	}
 
+	/**
+	 * Fetch all the chapters
+	 * 
+	 * @param context
+	 * @return
+	 */
+	public static ChapterEntity fetchChapter(Context context, int chapterPos) {
+
+		ChapterEntity chapter = null;
+		DataBaseHelper dbHelper = new DataBaseHelper(context);
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		Cursor cursor = dbHelper.readValues(db, tableName, null, KEY_SR + "=?",
+				new String[] { String.valueOf(chapterPos) }, null, null, null);
+
+		try {
+
+			if (cursor != null && cursor.getCount() > 0) {
+				if (cursor.moveToNext()) {
+					chapter = new ChapterEntity();
+					chapter = setEntityFromCursor(cursor);
+				}
+				cursor.close();
+			}
+		} catch (IllegalStateException e) {
+			Log.e(TAG, "IllegalStateException", e);
+		} finally {
+			if (db != null) {
+				db.close();
+			}
+			if (dbHelper != null) {
+				dbHelper.close();
+			}
+		}
+		return chapter;
+	}
+
 	// Method for setting entity from cursor
 	private static ChapterEntity setEntityFromCursor(Cursor cursor) {
 		ChapterEntity chatper = new ChapterEntity();
 
-		chatper.setChaperName(cursor.getString(cursor
+		chatper.setChapterName(cursor.getString(cursor
 				.getColumnIndex(KEY_CHAPTER_NAME)));
 		chatper.setChapterDetail(cursor.getString(cursor
 				.getColumnIndex(KEY_CHAPTER_DETAIL)));
@@ -89,7 +125,7 @@ public class ChapterEntityHelper {
 			for (ChapterEntity chapter : chapterList) {
 				cv = new ContentValues();
 				cv.put(KEY_CHAPTER_DETAIL, chapter.getChapterDetail());
-				cv.put(KEY_CHAPTER_NAME, chapter.getChaperName());
+				cv.put(KEY_CHAPTER_NAME, chapter.getChapterName());
 				cv.put(KEY_FAV, chapter.getFav());
 				database.insert(tableName, null, cv);
 			}
@@ -112,7 +148,7 @@ public class ChapterEntityHelper {
 			ContentValues cv = new ContentValues();
 			cv.put(KEY_SR, chapter.getSr());
 			cv.put(KEY_FAV, chapter.getFav());
-			cv.put(KEY_CHAPTER_NAME, chapter.getChaperName());
+			cv.put(KEY_CHAPTER_NAME, chapter.getChapterName());
 			cv.put(KEY_CHAPTER_DETAIL, chapter.getChapterDetail());
 			database.update(tableName, cv, KEY_SR + "=?",
 					new String[] { String.valueOf(chapter.getSr()) });

@@ -8,6 +8,10 @@
         android:minSdkVersion="9"
         android:targetSdkVersion="18" />
 
+
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
@@ -38,6 +42,11 @@
             android:name="com.gmat.app.activities.StandaloneExample"
             android:label="@string/title_activity_book_marked_chapter_list" >
         </activity>
+
+
+    
+
+    <meta-data android:name="com.crashlytics.ApiKey" android:value="76f84191b2211b9ae292e972235130da8bc5812c"/>
     </application>
 
 </manifest>

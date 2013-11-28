@@ -63,18 +63,20 @@ public class ChapterListAdpater extends BaseAdapter {
 			RelativeLayout chapterLayout = (RelativeLayout) convertView
 					.findViewById(R.id.chapter_list_item_layout);
 
-			chapterTitleTextView.setText(chapter.getChaperName());
+			chapterTitleTextView.setText(chapter.getChapterName());
 
-			chapterLayout.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					Intent intent = new Intent(activity,
-							ChapterDetailActivity.class);
-					intent.putExtra(CHAPTER_OBJ, chapter);
-					activity.startActivity(intent);
-				}
-			});
+//			chapterLayout.setOnClickListener(new OnClickListener() {
+//
+//				@Override
+//				public void onClick(View v) {
+//					Intent intent = new Intent(activity,
+//							ChapterDetailActivity.class);
+//					intent.putExtra(CHAPTER_OBJ, chapter);
+//					activity.startActivity(intent);
+//					activity.overridePendingTransition(R.anim.slide_in_left,
+//							R.anim.slide_out_right);
+//				}
+//			});
 		}
 		return convertView;
 	}

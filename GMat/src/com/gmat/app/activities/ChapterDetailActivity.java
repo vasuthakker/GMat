@@ -1,124 +1,57 @@
 package com.gmat.app.activities;
 
-import android.app.Activity;
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 
 import com.gmat.app.R;
-import com.gmat.app.entity.ChapterEntity;
-import com.gmat.app.helper.ChapterEntityHelper;
+import com.gmat.app.adapter.ChaptersPagerAdapter;
 
-public class ChapterDetailActivity extends Activity {
+public class ChapterDetailActivity extends FragmentActivity {
 
-	private TextView titleTextView;
-	private EditText detailEdittext;
-	private ImageView backImageView;
-	private ImageView zoomInImageView;
-	private ImageView zoomOutImageView;
+	private static final String CHAPTER_POS = "CHAPTER_POS";
 
-	private ImageView bookMarkImageView;
+	private int chapterPos;
 
-	private static final int BOOKMARKED = 1;
-	private static final int UNBOOKMARKED = 0;
+	private ViewPager pager;
 
-	private static final String CHAPTER_OBJ = "CHAPTER_OBJ";
-
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chapter_detail);
 
-		titleTextView = (TextView) findViewById(R.id.chapter_detail_title_textview);
-		detailEdittext = (EditText) findViewById(R.id.chapter_detail_detail_edittext);
-		backImageView = (ImageView) findViewById(R.id.chapter_detail_back_imageview);
-		zoomInImageView = (ImageView) findViewById(R.id.zoom_in);
-		zoomOutImageView = (ImageView) findViewById(R.id.zoom_out);
+		pager = (ViewPager) findViewById(R.id.detail_viewpager);
 
-		bookMarkImageView = (ImageView) findViewById(R.id.bookmark_imageview);
+		pager.setAdapter(new ChaptersPagerAdapter(this));
+		chapterPos = getIntent().getIntExtra(CHAPTER_POS, 0);
 
-		final ChapterEntity chapter = (ChapterEntity) getIntent()
-				.getSerializableExtra(CHAPTER_OBJ);
+		pager.setCurrentItem(chapterPos);
 
-		if (chapter.getFav() == BOOKMARKED) {
-			bookMarkImageView.setImageResource(R.drawable.bookmark_on);
-		} else {
-			bookMarkImageView.setImageResource(R.drawable.bookmark_off);
-		}
-
-		if (chapter != null) {
-			titleTextView.setText(chapter.getChaperName());
-			detailEdittext.setText(chapter.getChapterDetail());
-		}
-
-		backImageView.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				finish();
-			}
-		});
-
-		zoomInImageView.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-
-				float fontSizeSp = pixelsToSp(getApplicationContext(),
-						detailEdittext.getTextSize());
-
-				detailEdittext.setTextSize(fontSizeSp + 0.5f);
-
-			}
-		});
-
-		zoomOutImageView.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				float fontSizeSp = pixelsToSp(getApplicationContext(),
-						detailEdittext.getTextSize());
-
-				detailEdittext.setTextSize(fontSizeSp - 0.5f);
-
-			}
-		});
-
-		bookMarkImageView.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-
-				String toastMessage;
-				if (chapter.getFav() == BOOKMARKED) {
-					bookMarkImageView.setImageResource(R.drawable.bookmark_off);
-					chapter.setFav(UNBOOKMARKED);
-					toastMessage = getString(R.string.removed_from_bookamrk);
-				} else {
-					bookMarkImageView.setImageResource(R.drawable.bookmark_on);
-					chapter.setFav(BOOKMARKED);
-					toastMessage = getString(R.string.added_to_bookamrk);
-				}
-
-				ChapterEntityHelper.updateChapter(getApplicationContext(),
-						chapter);
-
-				Toast.makeText(getApplicationContext(), toastMessage,
-						Toast.LENGTH_SHORT).show();
-
-			}
-		});
 	}
 
-	public static float pixelsToSp(Context context, Float px) {
-		float scaledDensity = context.getResources().getDisplayMetrics().scaledDensity;
-		return px / scaledDensity;
-	}
+	// private class Chapters extends FragmentStatePagerAdapter {
+	//
+	// public Chapters(FragmentManager fm) {
+	// super(fm);
+	//
+	// }
+	//
+	// @Override
+	// public Fragment getItem(int position) {
+	// Fragment fragment = new ChapterDetailFragment();
+	// Bundle bundle = new Bundle();
+	// bundle.putInt(CHAPTER_POS, position);
+	// fragment.setArguments(bundle);
+	// return fragment;
+	// }
+	//
+	// @Override
+	// public int getCount() {
+	// return TOTAL_CHAPTERS;
+	// }
+	//
+	// }
 
 }

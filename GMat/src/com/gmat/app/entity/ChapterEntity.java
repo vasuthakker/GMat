@@ -5,7 +5,7 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class ChapterEntity implements Serializable {
 	private int sr;
-	private String chaperName;
+	private String chapterName;
 	private String chapterDetail;
 	private int fav;
 
@@ -17,12 +17,12 @@ public class ChapterEntity implements Serializable {
 		this.sr = sr;
 	}
 
-	public String getChaperName() {
-		return chaperName;
+	public String getChapterName() {
+		return chapterName;
 	}
 
-	public void setChaperName(String chaperName) {
-		this.chaperName = chaperName;
+	public void setChapterName(String chaperName) {
+		this.chapterName = chaperName;
 	}
 
 	public String getChapterDetail() {
