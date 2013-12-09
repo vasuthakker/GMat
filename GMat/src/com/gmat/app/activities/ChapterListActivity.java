@@ -11,7 +11,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
@@ -30,9 +29,9 @@ public class ChapterListActivity extends Activity {
 
 	protected static final String CHAPTER_POS = "CHAPTER_POS";
 	private ListView chapterListView;
-	private ImageView bookmarkImageView;
 	private RelativeLayout screen;
 	private RelativeLayout bookmarkLayout;
+	protected static final String BOOKMARK_VIEW = "BOOKMARK_VIEW";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +39,6 @@ public class ChapterListActivity extends Activity {
 		setContentView(R.layout.activity_chapter_list);
 
 		chapterListView = (ListView) findViewById(R.id.chapter_list_listview);
-
-		bookmarkImageView = (ImageView) findViewById(R.id.chapter_list_bookmark_imageview);
 
 		screen = (RelativeLayout) findViewById(R.id.screen);
 
@@ -79,8 +76,8 @@ public class ChapterListActivity extends Activity {
 						int position, long arg3) {
 					Intent intent = new Intent(getApplicationContext(),
 							ChapterDetailActivity.class);
-					intent.putExtra(CHAPTER_POS, position);
-
+					intent.putExtra(CHAPTER_POS, position + 1);
+					intent.putExtra(BOOKMARK_VIEW, false);
 					Animation animRightIn = AnimationUtils.loadAnimation(
 							getApplicationContext(), R.anim.slide_out_left);
 

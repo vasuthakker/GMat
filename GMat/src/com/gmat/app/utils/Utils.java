@@ -175,10 +175,9 @@ public final class Utils {
 		chapter.setChapterName("Chapter 19: Thank you");
 		chapter.setChapterDetail("I hope this helps you get an incredible score.  I hope the material was clear and the content helpful.  If it does, please leave a 5 star rating and some positive feedback for everyone else to see.  Thank you a million times over.");
 		chapterList.add(chapter);
-		
-		
-		//inserting data
-		ChapterEntityHelper.insertChapters(context,chapterList);
+
+		// inserting data
+		ChapterEntityHelper.insertChapters(context, chapterList);
 
 	}
 }

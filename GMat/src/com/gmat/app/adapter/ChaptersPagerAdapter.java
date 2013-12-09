@@ -1,5 +1,7 @@
 package com.gmat.app.adapter;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
@@ -28,19 +30,21 @@ public class ChaptersPagerAdapter extends PagerAdapter {
 	private static final int BOOKMARKED = 1;
 	private static final int UNBOOKMARKED = 0;
 
-	private static final int TOTAL_CHAPTERS = 19;
 	private Activity activity;
 	private RelativeLayout backLayout;
+	private List<ChapterEntity> chapEntities;
 
-	public ChaptersPagerAdapter(Activity context) {
+	public ChaptersPagerAdapter(Activity context,
+			List<ChapterEntity> chapEntities) {
 		this.activity = context;
+		this.chapEntities = chapEntities;
 		inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
 	@Override
 	public int getCount() {
-		return TOTAL_CHAPTERS;
+		return chapEntities.size();
 	}
 
 	@Override
@@ -71,8 +75,7 @@ public class ChaptersPagerAdapter extends PagerAdapter {
 
 			detailEditText.setTextColor(Color.BLACK);
 
-			final ChapterEntity chapter = ChapterEntityHelper.fetchChapter(
-					activity, position + 1);
+			final ChapterEntity chapter = chapEntities.get(position);
 
 			if (chapter != null) {
 				titleTextView.setText(chapter.getChapterName());

@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey_background"
-    tools:context=".ChapterListActivity" >
+    tools:context=".ChapterListActivity" 
+    android:id="@+id/bookmark_base_layout">
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"
@@ -22,6 +23,22 @@
             android:text="@string/bookmarks"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/text_blue" />
+
+        <RelativeLayout
+            android:id="@+id/bookmark_back_image_layout"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true" >
+
+            <ImageView
+                android:id="@+id/chapter_detail_back_imageview"
+                android:layout_width="30dp"
+                android:layout_height="25dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/menu_button" />
+        </RelativeLayout>
+
     </RelativeLayout>
 
     <ListView
